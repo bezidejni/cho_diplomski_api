@@ -98,6 +98,11 @@ TEMPLATE_DIRS = (
     root('templates'),
 )
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
+    'PAGE_SIZE': 15
+}
+
 
 # .local.py overrides all the common settings.
 try:
