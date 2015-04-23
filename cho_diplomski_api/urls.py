@@ -3,10 +3,16 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'tt.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+from rest_framework import routers
 
+from events.views import EventViewSet
+
+router = routers.DefaultRouter()
+router.register(r'events', EventViewSet)
+
+
+urlpatterns = patterns('',
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
