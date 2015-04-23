@@ -6,9 +6,11 @@ from django.contrib import admin
 from rest_framework import routers
 
 from events.views import EventViewSet
+from users.views import UserViewSet
 
 router = routers.DefaultRouter()
 router.register(r'events', EventViewSet)
+router.register(r'users', UserViewSet)
 
 
 urlpatterns = patterns('',
