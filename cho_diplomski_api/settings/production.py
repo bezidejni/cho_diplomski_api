@@ -22,3 +22,5 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
+STATIC_ROOT = root('staticfiles')
