@@ -11,7 +11,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cho_diplomski_api',
-        'USER': 'postgres',
+        'USER': 'bezidejni',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
