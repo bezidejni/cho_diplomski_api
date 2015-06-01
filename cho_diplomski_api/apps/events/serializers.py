@@ -15,3 +15,15 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
             invitation = None
         repr['invitation_status'] = invitation.status if invitation else 'pending'
         return repr
+
+    def to_internal_value(self, data):
+        if data['invitation_status'] and data['invitation_status'] in EventInvitation.STATUS:
+            user = self.context['request'].user
+            event = self.instance
+            try:
+                invitation = EventInvitation.objects.get(event=event, user=user)
+                invitation.status = data['invitation_status']
+                invitation.save()
+            except EventInvitation.DoesNotExist:
+                EventInvitation.objects.create(event=event, user=user, status=data['invitation_status'])
+        return data
