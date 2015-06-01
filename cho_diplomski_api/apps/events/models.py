@@ -12,9 +12,12 @@ class Event(models.Model):
     end = models.DateTimeField()
     application_deadline = models.DateTimeField()
 
+    def __unicode__(self):
+        return self.name
+
 
 class EventInvitation(models.Model):
-    STATUS = Choices('pending', 'accepted', 'rejected')
+    STATUS = Choices('accepted', 'rejected')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='events')
-    event = models.ForeignKey(Event, related_name='users')
-    status = StatusField(default=STATUS.pending)
+    event = models.ForeignKey(Event, related_name='invitations')
+    status = StatusField(default=STATUS.accepted)
