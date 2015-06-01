@@ -1,12 +1,5 @@
 from .base import *
 
-
-ADMINS = (
-    ('Filip Jukić', 'filip@jukic.me'),
-)
-
-MANAGERS = ADMINS
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

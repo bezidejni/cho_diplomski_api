@@ -16,11 +16,3 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 SECRET_KEY = os.environ["SECRET_KEY"]
-
-ADMINS = (
-    ('Filip Jukić', 'filip@jukic.me'),
-)
-
-MANAGERS = ADMINS
-
-STATIC_ROOT = root('staticfiles')
