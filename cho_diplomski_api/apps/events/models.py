@@ -1,7 +1,16 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 from model_utils import Choices
 from model_utils.fields import StatusField
+
+
+class EventQuerySet(models.QuerySet):
+    def applications_closed(self):
+        return self.filter(application_deadline__lt=timezone.now())
+
+    def applications_open(self):
+        return self.filter(application_deadline__gte=timezone.now())
 
 
 class Event(models.Model):
@@ -11,6 +20,8 @@ class Event(models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     application_deadline = models.DateTimeField()
+
+    objects = EventQuerySet.as_manager()
 
     def __unicode__(self):
         return self.name
