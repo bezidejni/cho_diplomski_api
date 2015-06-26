@@ -9,3 +9,10 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
+
+
+class CurrentUserViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return User.objects.filter(id=self.request.user.id)
