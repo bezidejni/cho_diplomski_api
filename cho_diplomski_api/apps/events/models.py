@@ -1,3 +1,4 @@
+from datetime import time
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
@@ -7,10 +8,12 @@ from model_utils.fields import StatusField
 
 class EventQuerySet(models.QuerySet):
     def applications_closed(self):
-        return self.filter(application_deadline__lt=timezone.now())
+        today_min = timezone.datetime.combine(timezone.now().date(), time.min)
+        return self.filter(application_deadline__lt=today_min)
 
     def applications_open(self):
-        return self.filter(application_deadline__gte=timezone.now())
+        today_min = timezone.datetime.combine(timezone.now().date(), time.min)
+        return self.filter(application_deadline__gte=today_min)
 
 
 class Event(models.Model):
