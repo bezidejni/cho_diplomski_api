@@ -20,4 +20,4 @@ class EventViewSet(viewsets.ModelViewSet):
                 queryset = queryset.applications_open()
             else:
                 queryset = queryset.applications_closed()
-        return queryset.order_by('id')
+        return queryset
