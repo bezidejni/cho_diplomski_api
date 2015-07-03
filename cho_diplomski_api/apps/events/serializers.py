@@ -22,7 +22,6 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
 
     def to_internal_value(self, data):
         repr = super(EventSerializer, self).to_internal_value(data)
-        print repr
         if 'invitation_status' in data and data['invitation_status'] in EventInvitation.STATUS:
             user = self.context['request'].user
             event = self.instance
